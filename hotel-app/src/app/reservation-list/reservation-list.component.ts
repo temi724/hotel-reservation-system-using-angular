@@ -9,6 +9,7 @@ import { Reservation } from '../models/reservation';
   styleUrl: './reservation-list.component.css',
 })
 export class ReservationListComponent implements OnInit {
+  reservations: Reservation[] = [];
   constructor(private rs: ReservationService) {
     this.reservations = this.rs.getReservations();
   }
@@ -16,5 +17,8 @@ export class ReservationListComponent implements OnInit {
     this.reservations = this.rs.getReservations();
   }
 
-  reservations: Reservation[] = [];
+  deleteReservation(id: string) {
+    this.rs.deleteReservation(id);
+    this.reservations = this.rs.getReservations();
+  }
 }

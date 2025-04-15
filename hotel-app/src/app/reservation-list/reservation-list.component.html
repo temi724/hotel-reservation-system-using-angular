@@ -14,6 +14,18 @@
         <p>{{ reservation.checkInDate }}</p>
         <p>{{ reservation.checkOutDate }}</p>
         <p>{{ reservation.roomNumber }}</p>
+        <button
+          (click)="deleteReservation(reservation.id)"
+          class="h-8 w-8 rounded-md text-white font-bold bg-red-500"
+        >
+          D
+        </button>
+        <button
+          [routerLink]="['/edit', reservation.id]"
+          class="h-8 w-8 rounded-md text-white font-bold bg-amber-600"
+        >
+          E
+        </button>
       </div>
     </div>
   </div>

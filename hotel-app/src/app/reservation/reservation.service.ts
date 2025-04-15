@@ -24,24 +24,27 @@ export class ReservationService {
   }
 
   addReservation(reservation: Reservation): void {
+    reservation.id = Date.now().toString();
     this.reservations.push(reservation);
     localStorage.setItem('reservations', JSON.stringify(this.reservations));
   }
 
   deleteReservation(id: string): void {
-    let index = this.reservations.findIndex((res) => res.id !== id);
+    let index = this.reservations.findIndex((res) => res.id === id);
     this.reservations.splice(index, 1);
     localStorage.setItem('reservations', JSON.stringify(this.reservations));
   }
 
   updateReservation(id: string, updatedReservation: Reservation): void {
     const index = this.reservations.findIndex((res) => res.id === id);
-    if (index !== -1) {
-      this.reservations[index] = {
-        ...this.reservations[index],
-        ...updatedReservation,
-      };
-      localStorage.setItem('reservations', JSON.stringify(this.reservations));
-    }
+    this.reservations[index] = updatedReservation;
+    localStorage.setItem('reservations', JSON.stringify(this.reservations));
+    // if (index !== -1) {
+    //   this.reservations[index] = {
+    //     ...this.reservations[index],
+    //     ...updatedReservation,
+    //   };
+    //   localStorage.setItem('reservations', JSON.stringify(this.reservations));
+    // }
   }
 }
