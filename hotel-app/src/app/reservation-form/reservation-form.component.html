@@ -1,1 +1,117 @@
-<p>reservation-form works!</p>
+<div>
+  <form
+    class="flex items-center justify-center flex-col mt-10"
+    [formGroup]="reservationForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <div class="text-black flex flex-col gap-2 w-1/4">
+      <label for="name">Name:</label>
+      <input
+        class="border-gray-300 h-10 border-1 rounded-lg p-4"
+        id="name"
+        formControlName="name"
+        required
+      />
+      <div
+        class="text-red-500 text-[12px]"
+        *ngIf="
+          reservationForm.get('name')?.invalid &&
+          reservationForm.get('name')?.touched
+        "
+      >
+        Name is required.
+      </div>
+    </div>
+    <div class="text-black flex flex-col gap-2 w-1/4">
+      <label for="email">Email:</label>
+      <input
+        class="border-gray-300 h-10 border-1 rounded-lg p-4"
+        id="email"
+        formControlName="email"
+        required
+      />
+      <div
+        class="text-red-500 text-[12px]"
+        *ngIf="
+          reservationForm.get('email')?.invalid &&
+          reservationForm.get('email')?.touched
+        "
+      >
+        Valid email is required.
+      </div>
+    </div>
+    <div class="text-black flex flex-col gap-2 w-1/4 my-3">
+      <label for="checkIn">Check-in Date:</label>
+      <input
+        class="border-gray-300 h-10 border-1 rounded-lg p-4"
+        id="checkIn"
+        formControlName="checkInDate"
+        type="date"
+        required
+      />
+      <div
+        class="text-red-500 text-[12px]"
+        *ngIf="
+          reservationForm.get('checkInDate')?.invalid &&
+          reservationForm.get('checkInDate')?.touched
+        "
+      >
+        Check-in date is required.
+      </div>
+    </div>
+    <div class="text-black flex flex-col gap-2 w-1/4 my-3">
+      <label for="checkOut">Check-out Date:</label>
+      <input
+        class="border-gray-300 h-10 border-1 rounded-lg p-4"
+        id="checkOut"
+        formControlName="checkOutDate"
+        type="date"
+        required
+      />
+      <div
+        class="text-red-500 text-[12px]"
+        *ngIf="
+          reservationForm.get('checkOutDate')?.invalid &&
+          reservationForm.get('checkOutDate')?.touched
+        "
+      >
+        Check-out date is required.
+      </div>
+    </div>
+    <div class="text-black flex flex-col gap-2 w-1/4">
+      <label for="room">Room number:</label>
+      <input
+        class="border-gray-300 h-10 border-1 rounded-lg p-4"
+        id="room"
+        formControlName="roomNumber"
+        required
+      />
+      <div
+        class="text-red-500 text-[12px]"
+        *ngIf="
+          reservationForm.get('roomNumber')?.invalid &&
+          reservationForm.get('email')?.touched
+        "
+      >
+        Valid room number is required.
+      </div>
+    </div>
+    <!-- <div>
+        <label for="roomType">Room Type:</label>
+        <select id="roomType" formControlName="roomType" required>
+            <option value="">Select a room type</option>
+            <option *ngFor="let type of roomTypes" [value]="type">{{ type }}</option>
+        </select>
+        <div *ngIf="reservationForm.get('roomType').invalid && reservationForm.get('roomType').touched">
+        Room type is required.
+        </div>
+    </div> -->
+    <button
+      type="submit"
+      class="w-1/4 text-white h-10 rounded-md bg-red-400 my-3"
+      [disabled]="reservationForm.invalid"
+    >
+      Submit
+    </button>
+  </form>
+</div>

@@ -9,6 +9,7 @@ import { HomeModule } from './home/home.module';
 
 @NgModule({
   declarations: [AppComponent],
+  //Import other modules to make them available in the app module
   imports: [BrowserModule, AppRoutingModule, ReservationModule, HomeModule],
   providers: [],
   bootstrap: [AppComponent],
