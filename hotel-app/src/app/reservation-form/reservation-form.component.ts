@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { OnInit } from '@angular/core';
 import { ReservationService } from '../reservation/reservation.service';
 import { Reservation } from '../models/reservation';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reservation-form',
@@ -12,7 +13,11 @@ import { Reservation } from '../models/reservation';
 })
 export class ReservationFormComponent implements OnInit {
   reservationForm: FormGroup = new FormGroup({});
-  constructor(private rs: ReservationService, private fb: FormBuilder) {}
+  constructor(
+    private rs: ReservationService,
+    private fb: FormBuilder,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.reservationForm = this.fb.group({
@@ -31,6 +36,7 @@ export class ReservationFormComponent implements OnInit {
       let rf: Reservation = this.reservationForm.value;
       this.rs.addReservation(rf);
       this.reservationForm.reset();
+      this.router.navigate(['/list']);
     } else {
       console.log('Form is invalid');
     }

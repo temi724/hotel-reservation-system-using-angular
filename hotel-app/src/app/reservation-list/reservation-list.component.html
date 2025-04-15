@@ -1,1 +1,27 @@
-<p>reservation-list works!</p>
+<div
+  class="flex flex-col items-center"
+  *ngIf="reservations.length; else noReservations"
+>
+  <h1>Reservation list</h1>
+  <div>
+    <div
+      *ngFor="let reservation of reservations; index as i"
+      class="flex w-[700px] bg-blue-50 rounded-md my-2 items-center justify-center h-10 flex-col"
+    >
+      <div class="flex w-full p-5 flex-row justify-between">
+        <p>{{ reservation.name }}</p>
+        <p>{{ reservation.email }}</p>
+        <p>{{ reservation.checkInDate }}</p>
+        <p>{{ reservation.checkOutDate }}</p>
+        <p>{{ reservation.roomNumber }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #noReservations>
+  <div class="flex flex-col items-center text-red-500 font-bold">
+    <h1>No reservations found</h1>
+    <p>Please make a reservation first.</p>
+  </div>
+</ng-template>
