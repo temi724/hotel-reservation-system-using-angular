@@ -39,12 +39,5 @@ export class ReservationService {
     const index = this.reservations.findIndex((res) => res.id === id);
     this.reservations[index] = updatedReservation;
     localStorage.setItem('reservations', JSON.stringify(this.reservations));
-    // if (index !== -1) {
-    //   this.reservations[index] = {
-    //     ...this.reservations[index],
-    //     ...updatedReservation,
-    //   };
-    //   localStorage.setItem('reservations', JSON.stringify(this.reservations));
-    // }
   }
 }

@@ -45,12 +45,12 @@ export class ReservationFormComponent implements OnInit {
       let id = this.ac.snapshot.paramMap.get('id');
       if (id) {
         this.rs.updateReservation(id, rf);
+      } else {
+        this.rs.addReservation(rf);
       }
-      this.rs.addReservation(rf);
+
       this.reservationForm.reset();
       this.router.navigate(['/list']);
-    } else {
-      console.log('Form is invalid');
     }
   }
 }
