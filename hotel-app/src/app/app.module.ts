@@ -5,12 +5,19 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReservationModule } from './reservation/reservation.module';
 import { HomeModule } from './home/home.module';
+import { HttpClientModule } from '@angular/common/http';
 // import { ReservationFormComponent } from './reservation-form/reservation-form.component';
 
 @NgModule({
   declarations: [AppComponent],
   //Import other modules to make them available in the app module
-  imports: [BrowserModule, AppRoutingModule, ReservationModule, HomeModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReservationModule,
+    HomeModule,
+    HttpClientModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

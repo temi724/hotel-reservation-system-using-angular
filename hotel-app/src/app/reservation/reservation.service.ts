@@ -1,22 +1,30 @@
 import { Injectable } from '@angular/core';
 import { Reservation } from '../models/reservation';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ReservationService {
+  private apiUrl = 'http://localhost:3001/';
   private reservations: Reservation[] = [];
 
-  constructor() {
-    let storedReservations = localStorage.getItem('reservations');
-    this.reservations = storedReservations
-      ? JSON.parse(storedReservations)
-      : [];
-  }
+  // constructor() {
+  //   let storedReservations = localStorage.getItem('reservations');
+  //   this.reservations = storedReservations
+  //     ? JSON.parse(storedReservations)
+  //     : [];
+  // }
+  constructor(private http: HttpClient) {}
 
-  getReservations(): Reservation[] {
-    return this.reservations;
+  // getReservations(): Reservation[] {
+  //   return this.reservations;
+  // }
+
+  getReservations(): Observable<Reservation[]> {
+    return this.http.get<Reservation[]>(this.apiUrl + 'reservations');
   }
 
   getReservationById(id: string): Reservation | undefined {
@@ -26,18 +34,18 @@ export class ReservationService {
   addReservation(reservation: Reservation): void {
     reservation.id = Date.now().toString();
     this.reservations.push(reservation);
-    localStorage.setItem('reservations', JSON.stringify(this.reservations));
+    // localStorage.setItem('reservations', JSON.stringify(this.reservations));
   }
 
   deleteReservation(id: string): void {
     let index = this.reservations.findIndex((res) => res.id === id);
     this.reservations.splice(index, 1);
-    localStorage.setItem('reservations', JSON.stringify(this.reservations));
+    // localStorage.setItem('reservations', JSON.stringify(this.reservations));
   }
 
   updateReservation(id: string, updatedReservation: Reservation): void {
     const index = this.reservations.findIndex((res) => res.id === id);
     this.reservations[index] = updatedReservation;
-    localStorage.setItem('reservations', JSON.stringify(this.reservations));
+    // localStorage.setItem('reservations', JSON.stringify(this.reservations));
   }
 }

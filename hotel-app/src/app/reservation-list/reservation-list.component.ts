@@ -10,15 +10,15 @@ import { Reservation } from '../models/reservation';
 })
 export class ReservationListComponent implements OnInit {
   reservations: Reservation[] = [];
-  constructor(private rs: ReservationService) {
-    this.reservations = this.rs.getReservations();
-  }
+  constructor(private rs: ReservationService) {}
   ngOnInit(): void {
-    this.reservations = this.rs.getReservations();
+    this.rs.getReservations().subscribe((res) => {
+      this.reservations = res;
+    });
   }
 
   deleteReservation(id: string) {
     this.rs.deleteReservation(id);
-    this.reservations = this.rs.getReservations();
+    // this.reservations = this.rs.getReservations();
   }
 }

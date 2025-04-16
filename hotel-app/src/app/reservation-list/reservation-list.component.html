@@ -12,8 +12,8 @@
       <div class="flex w-full p-5 flex-row justify-between">
         <p>{{ reservation.name }}</p>
         <p>{{ reservation.email }}</p>
-        <p>{{ reservation.checkInDate }}</p>
-        <p>{{ reservation.checkOutDate }}</p>
+        <p>{{ reservation.checkInDate | date }}</p>
+        <p>{{ reservation.checkOutDate | date }}</p>
         <p>{{ reservation.roomNumber }}</p>
         <button
           (click)="deleteReservation(reservation.id)"
